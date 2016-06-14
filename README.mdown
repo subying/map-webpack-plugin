@@ -5,3 +5,36 @@
 ```shell
 npm install map-webpack-plugin
 ```
+
+## 配置
+``` javascript
+var MapPlugin = require('map-webpack-plugin');
+var mapPluginInstance = new MapPlugin({
+    filename:'map.json',//输出的文件名 即保存的文件
+    path: './'//输出的目录 即保存的路径
+});
+
+
+module.exports = {
+  ...
+  plugins: [
+    mapPluginInstance
+  ]
+};
+```
+
+## 输出的文件
+```js
+{
+    "js":{
+        "js/a.js":"js/a.3efdr5.js"
+    },
+    "css":{
+        "css/a.css":"css/a.3efdr5.css"
+    },
+    "img":{
+        "img/err.png":"img/err.6sfetg.png"
+    },
+    "other":{}
+}
+```
