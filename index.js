@@ -51,8 +51,22 @@ class MapWebpackPlugin{
                 var _ext = _nameObj.ext;
                 var _type = 'other';
 
-                if(/.*\.[a-z\d]+\..*$/.test(_name)){
-                    _name =  _nameObj.dir+'/'+_nameObj.name.split('.')[0]+_ext;
+                var _regx = new RegExp(".*\\.([a-z\d]+)"+_ext);
+                var _match,_arr,_rstr;
+
+                if(_regx.test(_name)){
+                    _match = _name.match(_regx);
+
+                    //去掉hash
+                    if(_match[1]){
+                        _rstr = _match[1]+'.';
+                    }else{
+                        _arr = _nameObj.name.split('.');
+                        _rstr = _arr[_arr.length-2]+'.';
+                    }
+
+                    _name =  _name.replace(_rstr,'');
+
                 }
 
 
