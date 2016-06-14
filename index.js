@@ -51,7 +51,7 @@ class MapWebpackPlugin{
                 var _ext = _nameObj.ext;
                 var _type = 'other';
 
-                var _regx = new RegExp(".*\\.([a-z\d]+)"+_ext);
+                var _regx = new RegExp(".*\\.([a-z0-9]+)"+_ext);
                 var _match,_arr,_rstr;
 
                 if(_regx.test(_name)){
