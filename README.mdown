@@ -1,0 +1,7 @@
+# map-webpack-plugin
+
+## 安装
+
+```shell
+npm install map-webpack-plugin
+```

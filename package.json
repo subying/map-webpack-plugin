@@ -1,0 +1,28 @@
+{
+  "name": "map-webpack-plugin",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=5.0"
+  },
+  "author": {
+    "name": "subying",
+    "email": "tearlight2008@gmail.com"
+  },
+  "homepage": "https://github.com/subying/map-webpack-plugin.git",
+  "description": "webpack map plugin",
+  "main": "index.js",
+  "keywords": [
+    "webpack",
+    "map",
+    "plugin"
+  ],
+  "dependencies": {
+    "lodash.merge": "^4.4.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/subying/map-webpack-plugin.git"
+  },
+  "license": "MIT"
+}
