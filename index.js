@@ -3,9 +3,10 @@
  *@description webpack map构建插件
 */
 
-const merge = require('lodash.merge');
-const Path  = require('path');
-const fs    = require('fs');
+const merge  = require('lodash.merge');
+const Path   = require('path');
+const fs     = require('fs');
+const mkdirp = require('mkdirp');
 
 
 class MapWebpackPlugin{
@@ -86,6 +87,11 @@ class MapWebpackPlugin{
             });
 
             content = JSON.stringify(mapJson,null,2);
+
+            //判断目录  如果目录不存在则创建目录
+            if(!fs.existsSync(_self.options.path)){
+                mkdirp.sync(_self.options.path);
+            }
 
             fs.writeFileSync(fileName,content,'utf8');
 

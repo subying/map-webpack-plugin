@@ -1,6 +1,6 @@
 {
   "name": "map-webpack-plugin",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "node": ">=5.0"
   },
@@ -17,7 +17,8 @@
     "plugin"
   ],
   "dependencies": {
-    "lodash.merge": "^4.4.0"
+    "lodash.merge": "^4.4.0",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {},
   "repository": {
