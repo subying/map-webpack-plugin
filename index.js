@@ -13,8 +13,18 @@ class MapWebpackPlugin{
     constructor(options){
         this.options = merge({}, {
           path: '.',
-          filename: 'webpack-map.json'
+          filename: 'webpack-map.json',
+          rule:{
+              js:/\.js$/i,
+              css:/\.css$/i,
+              img:/\.(jpe?g|png|gif)$/
+          }
         }, options);
+    }
+
+    //检测文件类型
+    checkType(type){
+        console.log(this.options.rule);
     }
 
     apply(compiler){
@@ -78,6 +88,9 @@ class MapWebpackPlugin{
                 }else if( imgRegx.test(_ext)){
                     _type = 'img';
                 }
+
+
+                _self.checkType(item.name);
 
                 //过滤map 文件
                 if(_ext != '.map'){
