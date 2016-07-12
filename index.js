@@ -23,8 +23,17 @@ class MapWebpackPlugin{
     }
 
     //检测文件类型
-    checkType(type){
-        console.log(this.options.rule);
+    checkType(filename){
+        var _rule = this.options.rule;
+        var _type = 'other';
+
+        for(let name in _rule){
+            if(_rule[name].test(filename)){
+                _type = name;
+            }
+        }
+
+        return _type;
     }
 
     apply(compiler){
@@ -47,13 +56,8 @@ class MapWebpackPlugin{
             var assetsByChunkName = stats.assetsByChunkName;
             var assetsArr = stats.assets;
             var hash = stats.hash;
-            var mapJson = {
-                js: {},//js file
-                css: {},//css file
-                img:{},// image file
-                other: {}
-            };
-            var imgRegx = /\.(jpe?g|png|gif)$/;
+
+            var mapJson = {};
             var fileName = Path.join(_self.options.path,_self.options.filename);
             var content = '';
 
@@ -61,7 +65,6 @@ class MapWebpackPlugin{
                 var _name = item.name;
                 var _nameObj = Path.parse(_name);
                 var _ext = _nameObj.ext;
-                var _type = 'other';
 
                 var _regx = new RegExp(".*\\.([a-z0-9]+)"+_ext);
                 var _match,_arr,_rstr;
@@ -81,16 +84,11 @@ class MapWebpackPlugin{
 
                 }
 
+                var _type = _self.checkType(item.name);
 
-                if(_ext==='.js' || _ext === '.css'){
-                    //
-                    _type = _ext.replace('.','');
-                }else if( imgRegx.test(_ext)){
-                    _type = 'img';
+                if(!mapJson[_type]){
+                    mapJson[_type] = {};
                 }
-
-
-                _self.checkType(item.name);
 
                 //过滤map 文件
                 if(_ext != '.map'){

@@ -11,7 +11,10 @@ npm install map-webpack-plugin
 var MapPlugin = require('map-webpack-plugin');
 var mapPluginInstance = new MapPlugin({
     filename:'map.json',//输出的文件名 即保存的文件
-    path: './'//输出的目录 即保存的路径
+    path: './',//输出的目录 即保存的路径
+    rule: { //定义输出的类型,非必填项
+        font: /\.woff$/i
+    }
 });
 
 
@@ -35,6 +38,9 @@ module.exports = {
     "img":{
         "img/err.png":"img/err.6sfetg.png"
     },
+    "font":{
+        "fonts/iconfont.woff": "fonts/iconfont.35c9d1.woff"
+    }
     "other":{}
 }
 ```
