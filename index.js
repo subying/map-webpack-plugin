@@ -18,7 +18,8 @@ class MapWebpackPlugin{
               js:/\.js$/i,
               css:/\.css$/i,
               img:/\.(jpe?g|png|gif)$/
-          }
+          },
+          merge: false //是否合并原来文件的json 必须保证原来文件的json数据没有错误
         }, options);
     }
 
@@ -97,12 +98,27 @@ class MapWebpackPlugin{
 
             });
 
-            content = JSON.stringify(mapJson,null,2);
+            
 
             //判断目录  如果目录不存在则创建目录
             if(!fs.existsSync(_self.options.path)){
                 mkdirp.sync(_self.options.path);
             }
+
+            //判断是否需要合并 判断文件是否存在
+            if(_self.options.merge && fs.existsSync(fileName)){
+                var fileCon = fs.readFileSync(fileName);
+
+                try {
+                    fileCon = JSON.parse(fileCon, true);
+                    mapJson = merge(fileCon,mapJson);
+                } catch (error) {
+                    //console.log(error);
+                }
+            }
+
+
+            content = JSON.stringify(mapJson,null,2);
 
             fs.writeFileSync(fileName,content,'utf8');
 
