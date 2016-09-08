@@ -5,6 +5,8 @@
 ```shell
 npm install map-webpack-plugin
 ```
+## 日志
+* 0.2.1 增加了合并原来文件的json数据，前提是json数据没有错误（比如：文件版本冲突未解决）。
 
 ## 配置
 ``` javascript
@@ -14,7 +16,8 @@ var mapPluginInstance = new MapPlugin({
     path: './',//输出的目录 即保存的路径
     rule: { //定义输出的类型,非必填项
         font: /\.woff$/i
-    }
+    },
+    merge: true //跟文件的json数据进行合并
 });
 
 
