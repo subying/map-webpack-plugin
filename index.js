@@ -1,6 +1,6 @@
 'use strict';
 /*
- *@description webpack map构建插件
+ *@fileOverview webpack map构建插件
 */
 
 const merge  = require('lodash.merge');
@@ -23,7 +23,10 @@ class MapWebpackPlugin{
         }, options);
     }
 
-    //检测文件类型
+    /*
+     *@description 检测文件类型
+     *@param {String} filename 文件名
+    */
     checkType(filename){
         var _rule = this.options.rule;
         var _type = 'other';
