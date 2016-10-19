@@ -40,6 +40,10 @@ class MapWebpackPlugin{
         return _type;
     }
 
+    /*
+     *@description 插件执行方法
+     *@param {Object} compiler 编译器
+    */
     apply(compiler){
         //
         var _self = this;
