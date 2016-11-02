@@ -19,6 +19,7 @@ var mapPluginInstance = new MapPlugin({
     rule: { //定义输出的类型,非必填项
         font: /\.woff$/i
     },
+    filter: ['.action'],//过滤文件类型
     merge: true //跟文件的json数据进行合并
 });
 
