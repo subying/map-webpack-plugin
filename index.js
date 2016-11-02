@@ -17,7 +17,8 @@ class MapWebpackPlugin{
           rule:{
               js:/\.js$/i,
               css:/\.css$/i,
-              img:/\.(jpe?g|png|gif)$/
+              img:/\.(jpe?g|png|gif)$/,
+              font:/\.(eot|svg|ttf|woff)$/
           },
           merge: false //是否合并原来文件的json 必须保证原来文件的json数据没有错误
         }, options);
@@ -105,7 +106,7 @@ class MapWebpackPlugin{
 
             });
 
-            
+
 
             //判断目录  如果目录不存在则创建目录
             if(!fs.existsSync(_self.options.path)){
