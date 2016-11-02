@@ -20,13 +20,33 @@ class MapWebpackPlugin{
               img:/\.(jpe?g|png|gif)$/,
               font:/\.(eot|svg|ttf|woff)$/ //字体规则
           },
+          filter:['.map'],//过滤文件类型
           merge: false //是否合并原来文件的json 必须保证原来文件的json数据没有错误
         }, options);
     }
 
     /*
+     *@description 检测需要过滤的文件类型
+     *@param {String} ext 文件扩展名
+     *@return {Boolean} flag 是否为过滤类型
+    */
+    filterType(ext){
+        var _filter = this.options.filter;
+        var flag = false;
+        for(let i=0;i<_filter.length;i++){
+            if(ext === _filter[i]){
+                flag = true;
+                break;
+            }
+        }
+
+        return flag;
+    }
+
+    /*
      *@description 检测文件类型
      *@param {String} filename 文件名
+     *@return {String} _type 文件类型
     */
     checkType(filename){
         var _rule = this.options.rule;
@@ -100,7 +120,12 @@ class MapWebpackPlugin{
                 }
 
                 //过滤map 文件
-                if(_ext != '.map'){
+                // if(_ext != '.map'){
+                //     mapJson[_type][_name] = item.name;
+                // }
+
+                //过滤 文件类型
+                if(!_self.filterType(_ext)){
                     mapJson[_type][_name] = item.name;
                 }
 
