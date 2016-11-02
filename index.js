@@ -18,7 +18,7 @@ class MapWebpackPlugin{
               js:/\.js$/i,
               css:/\.css$/i,
               img:/\.(jpe?g|png|gif)$/,
-              font:/\.(eot|svg|ttf|woff)$/
+              font:/\.(eot|svg|ttf|woff)$/ //字体规则
           },
           merge: false //是否合并原来文件的json 必须保证原来文件的json数据没有错误
         }, options);
