@@ -1,16 +1,17 @@
 # map-webpack-plugin
 
-## 安装
+## 安装 Install
 
 ```shell
 npm install map-webpack-plugin
 ```
-## 日志
+## 日志 Log
+* 1.0.0 增加测试用例,多方测试后，升级为稳定版1.0.0
 * 0.3.0 增加文件过滤
 * 0.2.2 增加默认的字体规则
 * 0.2.1 增加了合并原来文件的json数据，前提是json数据没有错误（比如：文件版本冲突未解决）。
 
-## 配置
+## 配置 Usage
 ``` javascript
 var MapPlugin = require('map-webpack-plugin');
 var mapPluginInstance = new MapPlugin({
@@ -32,7 +33,7 @@ module.exports = {
 };
 ```
 
-## 输出的文件
+## 输出的文件 Output
 ```js
 {
     "js":{

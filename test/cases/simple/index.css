@@ -1,0 +1,10 @@
+@font-face {
+    font-family: iconfont;
+    src: url('./iconfont.woff');
+    src: url('./iconfont.woff') format('woff');
+}
+
+.test{
+    color: red;
+    text-align: center;
+}
