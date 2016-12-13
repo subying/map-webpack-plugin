@@ -11,6 +11,9 @@
   "homepage": "https://github.com/subying/map-webpack-plugin.git",
   "description": "webpack map plugin",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "keywords": [
     "webpack",
     "map",
