@@ -11,17 +11,17 @@ describe('TestSimple',function(){
         var outputDirectory = path.join(__dirname, 'js', 'simple');
 
         var options = { entry: { test: './index.js' } };
-    	var configFile = path.join(testDirectory, 'webpack.config.js');
+        var configFile = path.join(testDirectory, 'webpack.config.js');
 
         if(fs.existsSync(configFile)) options = require(configFile);
-    	options.context = testDirectory;
-    	if(!options.output) options.output = { filename: '[name].[chunkhash:6].js' };
-    	if(!options.output.path) options.output.path = outputDirectory;
+        options.context = testDirectory;
+        if(!options.output) options.output = { filename: '[name].[chunkhash:6].js' };
+        if(!options.output.path) options.output.path = outputDirectory;
 
         webpack(options, function(err, stats) {
-    		if(err) return done(err);
+            if(err) return done(err);
             //if(stats.hasErrors()) console.log(stats.toString());
-    		if(stats.hasErrors()) return done(new Error(stats.toString()));
+            if(stats.hasErrors()) return done(new Error(stats.toString()));
 
             var mapFile = path.join(outputDirectory, 'map.json');
 
@@ -41,8 +41,8 @@ describe('TestSimple',function(){
                 (fs.existsSync(_file)).should.be.eql(true);
             }
 
-    		done();
-    	});
+            done();
+        });
     });
 
     //测试filter功能 过滤.woff后缀文件
@@ -50,17 +50,17 @@ describe('TestSimple',function(){
         var testDirectory = path.join(__dirname, 'cases', 'filter');
         var outputDirectory = path.join(__dirname, 'js', 'filter');
         var options = { entry: { test: './index.js' } };
-    	var configFile = path.join(testDirectory, 'webpack.config.js');
+        var configFile = path.join(testDirectory, 'webpack.config.js');
 
         if(fs.existsSync(configFile)) options = require(configFile);
-    	options.context = testDirectory;
-    	if(!options.output) options.output = { filename: '[name].[chunkhash:6].js' };
-    	if(!options.output.path) options.output.path = outputDirectory;
+        options.context = testDirectory;
+        if(!options.output) options.output = { filename: '[name].[chunkhash:6].js' };
+        if(!options.output.path) options.output.path = outputDirectory;
 
         webpack(options, function(err, stats) {
-    		if(err) return done(err);
+            if(err) return done(err);
             //if(stats.hasErrors()) console.log(stats.toString());
-    		if(stats.hasErrors()) return done(new Error(stats.toString()));
+            if(stats.hasErrors()) return done(new Error(stats.toString()));
 
             var mapFile = path.join(outputDirectory, 'map.json');
 
@@ -88,7 +88,37 @@ describe('TestSimple',function(){
 
             }
 
-    		done();
-    	});
+            done();
+        });
+    });
+
+    //测试merge功能 合并后保留原来的map.json里面的 other 中的 main.txt
+    it('test the merge',function(done){
+        var testDirectory = path.join(__dirname, 'cases', 'merge');
+        var outputDirectory = path.join(__dirname, 'js', 'merge');
+        var options = { entry: { test: './index.js' } };
+        var configFile = path.join(testDirectory, 'webpack.config.js');
+
+        if(fs.existsSync(configFile)) options = require(configFile);
+        options.context = testDirectory;
+        if(!options.output) options.output = { filename: '[name].[chunkhash:6].js' };
+        if(!options.output.path) options.output.path = outputDirectory;
+
+        webpack(options, function(err, stats) {
+            if(err) return done(err);
+            //if(stats.hasErrors()) console.log(stats.toString());
+            if(stats.hasErrors()) return done(new Error(stats.toString()));
+
+            var mapFile = path.join(outputDirectory, 'map.json');
+            //if(!fs.existsSync(mapFile)) return done(new Error('map.json is not exists'));
+            var mapJson = require(mapFile);
+
+            //判断main.txt是否存在  因为一开始写入了map.json
+            if(!mapJson['other'] || !mapJson['other']['main.txt']){
+                return done(new Error('merge failed!'));
+            }
+
+            done();
+        });
     });
 });
