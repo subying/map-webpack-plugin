@@ -1,11 +1,12 @@
 {
   "other": {
-    "main.txt": "main.335fdd.txt"
+    "main.txt": "main.a07e76.txt"
   },
   "font": {
     "iconfont.woff": "iconfont.2e00fb.woff"
   },
   "js": {
+    "b.js": "b.js",
     "main.js": "main.b07f76.js"
   },
   "css": {

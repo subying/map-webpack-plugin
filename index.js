@@ -21,7 +21,7 @@ class MapWebpackPlugin{
               font:/\.(eot|svg|ttf|woff)$/ //字体规则
           },
           filter:['.map'],//过滤文件类型
-          merge: false //是否合并原来文件的json 必须保证原来文件的json数据没有错误
+          merge: false //是否合并原来文件的json 必须保证原来文件的json数据没有错误，如果是Boolean则合并配置中map.json  如果是string 则合并提供的文件路径
         }, options);
     }
 
@@ -139,17 +139,26 @@ class MapWebpackPlugin{
             }
 
             //判断是否需要合并 判断文件是否存在
-            if(_self.options.merge && fs.existsSync(fileName)){
-                var fileCon = fs.readFileSync(fileName);
+            if(_self.options.merge){
+                var _mtype = typeof(_self.options.merge);
+                var _mergeFile = fileName;
 
-                try {
-                    fileCon = JSON.parse(fileCon, true);
-                    mapJson = merge(fileCon,mapJson);
-                } catch (error) {
-                    //console.log(error);
+                //如果merge是string类型 则合并提供的路径
+                if(_mtype === 'string'){
+                    _mergeFile = _self.options.merge;
+                }
+
+                if(fs.existsSync(_mergeFile)){
+                    var fileCon = fs.readFileSync(_mergeFile);
+
+                    try {
+                        fileCon = JSON.parse(fileCon, true);
+                        mapJson = merge(fileCon,mapJson);
+                    } catch (error) {
+                        //console.log(error);
+                    }
                 }
             }
-
 
             content = JSON.stringify(mapJson,null,2);
 
