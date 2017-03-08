@@ -6,13 +6,10 @@ var mapPluginInstance = new MapPlugin({
     merge: true //跟文件的json数据进行合并
 });
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractLESS = new ExtractTextPlugin('[name].[chunkhash:6].css');
+var extractLESS = new ExtractTextPlugin('[name].[contenthash:6].css');
 
 module.exports = {
 	entry: './index',
-    output:{
-        filename: '[name].[chunkhash:6].js'
-    },
     module: {
         //各种加载器，即让各种文件格式可用require引用
         loaders: [
