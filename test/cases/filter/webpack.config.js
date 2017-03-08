@@ -10,6 +10,9 @@ var extractLESS = new ExtractTextPlugin('[name].[chunkhash:6].css');
 
 module.exports = {
 	entry: "./index",
+    output:{
+        filename: '[name].[chunkhash:6].js'
+    },
     module: {
         //各种加载器，即让各种文件格式可用require引用
         loaders: [
