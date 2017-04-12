@@ -15,15 +15,18 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loader:extractLESS.extract('style-loader','css-loader')
+                loader:extractLESS.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
             },
             {
                 test: /\.(jpg|png|gif)$/,
-                loader: 'url?limit=8192'
+                loader: 'url-loader?limit=8192'
             },
             {
                 test: /\.(eot|svg|ttf|woff)$/,
-                loader: 'file?name=[name].[hash:6].[ext]'
+                loader: 'file-loader?name=[name].[hash:6].[ext]'
             }
         ]
     },
