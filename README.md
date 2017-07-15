@@ -6,6 +6,7 @@
 npm install map-webpack-plugin
 ```
 ## 日志 Log
+* 1.1.3 增加webpack3的兼容测试，已完美兼容webpack3。
 * 1.1.1,1.1.2 增加webpack2的兼容测试，已完美兼容webpack2。
 * 1.1.0 增加文件的合并功能，当merge为文件路径时，则合并提供的文件。
 * 1.0.1 增加.npmignore 文件，忽略测试文件，减小安装包的容量。

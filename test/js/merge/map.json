@@ -1,16 +1,14 @@
 {
-  "other": {
-    "main.txt": "main.a07e76.txt"
-  },
   "font": {
     "iconfont.woff": "iconfont.2e00fb.woff"
   },
   "js": {
-    "b.js": "b.js",
-    "main.js": "main.c39f6c.js",
-    "main.[contenthash:6].js": "main.[contenthash:6].js"
+    "main.js": "main.17adfa.js"
   },
   "css": {
     "main.css": "main.534993.css"
+  },
+  "other": {
+    "main.txt": "main.78dsf9.txt"
   }
 }
